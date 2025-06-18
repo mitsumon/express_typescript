@@ -1,8 +1,12 @@
 import { Book, PrismaClient } from '../generated/prisma';
+import { BookRepositoryInterface } from './bookRepositoryInterface';
 
-export class PrismaBookRepository {
+export class PrismaBookRepository implements BookRepositoryInterface {
+  private prisma: PrismaClient;
 
-  constructor(private prisma: PrismaClient) {}
+  constructor() {
+    this.prisma = new PrismaClient();
+  }
 
   async findById(id: string): Promise<Book | null> {
     return await this.prisma.book.findUnique({

@@ -2,20 +2,15 @@ import express from 'express';
 import { BookController } from './presentation/bookController';
 import { BookService } from './businessLogic/bookService';
 import { PrismaBookRepository } from './dataAccess/prismaBookRepository';
-import { PrismaClient } from './generated/prisma';
 
 const app = express();
 
 // JSON形式のデータを受け取るための設定
 app.use(express.json());
 
-const bookController = new BookController(
-  new BookService(
-    new PrismaBookRepository(
-      new PrismaClient()
-    )
-  )
-);
+const bookRepository = new PrismaBookRepository();
+const bookService = new BookService(bookRepository);
+const bookController = new BookController(bookService);
 
 const PORT = process.env.PORT || 3000;
 
