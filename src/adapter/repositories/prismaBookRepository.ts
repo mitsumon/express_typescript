@@ -1,6 +1,6 @@
-import { PrismaClient } from '../../generated/prisma';
-import { Book } from '../../domain/entities/book';
-import { BookRepositoryInterface } from '../../domain/repositories/bookRepositoryInterface';
+import { PrismaClient } from "../../generated/prisma";
+import { Book } from "../../domain/entities/book";
+import { BookRepositoryInterface } from "../../domain/repositories/bookRepositoryInterface";
 
 export class PrismaBookRepository implements BookRepositoryInterface {
   constructor(private readonly prisma: PrismaClient) {}
@@ -25,10 +25,21 @@ export class PrismaBookRepository implements BookRepositoryInterface {
     );
   }
 
-  // async findById(id: string): Promise<Book | null> {
-  //   return await this.prisma.book.findUnique({
-  //     where: { id },
-  //   });
-  // }
+  async findById(id: string): Promise<Book | null> {
+    const foundBook = await this.prisma.book.findUnique({
+      where: { id },
+    });
 
+    if (!foundBook) {
+      return null;
+    }
+
+    return new Book(
+      foundBook.id,
+      foundBook.title,
+      foundBook.isAvailable,
+      foundBook.createdAt,
+      foundBook.updatedAt
+    );
+  }
 }

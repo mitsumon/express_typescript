@@ -1,10 +1,11 @@
-import express from 'express';
-import { BookController } from '../../adapter/controllers/bookController';
-import { bookRoutes } from '../../infrastructure/web/routers/bookRouter';
-import { PrismaBookRepository } from '../../adapter/repositories/prismaBookRepository';
-import { PrismaClient } from '../../generated/prisma';
-import { UuidGenerator } from '../../adapter/utils/uuidGenerator';
-import { AddBookUseCase } from '../../application/usecases/book/addBookUseCase';
+import express from "express";
+import { BookController } from "../../adapter/controllers/bookController";
+import { bookRoutes } from "../../infrastructure/web/routers/bookRouter";
+import { PrismaBookRepository } from "../../adapter/repositories/prismaBookRepository";
+import { PrismaClient } from "../../generated/prisma";
+import { UuidGenerator } from "../../adapter/utils/uuidGenerator";
+import { AddBookUseCase } from "../../application/usecases/book/addBookUseCase";
+import { FindBookByIdUseCase } from "../../application/usecases/book/findBookByIdUseCase";
 
 const app = express();
 
@@ -16,10 +17,11 @@ const uuidGenerator = new UuidGenerator();
 
 const bookRepository = new PrismaBookRepository(prisma);
 const addBookUseCase = new AddBookUseCase(bookRepository, uuidGenerator);
+const findBookByIdUsecase = new FindBookByIdUseCase(bookRepository);
 
-const bookController = new BookController(addBookUseCase);
+const bookController = new BookController(addBookUseCase, findBookByIdUsecase);
 
-app.use('/books', bookRoutes(bookController));
+app.use("/books", bookRoutes(bookController));
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
