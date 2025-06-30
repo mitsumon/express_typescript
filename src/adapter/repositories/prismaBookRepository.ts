@@ -1,6 +1,6 @@
-import { PrismaClient } from "../../generated/prisma";
-import { Book } from "../../domain/entities/book";
-import { BookRepositoryInterface } from "../../domain/repositories/bookRepositoryInterface";
+import { PrismaClient } from '../../generated/prisma';
+import { Book } from '../../domain/entities/book';
+import { BookRepositoryInterface } from '../../domain/repositories/bookRepositoryInterface';
 
 export class PrismaBookRepository implements BookRepositoryInterface {
   constructor(private readonly prisma: PrismaClient) {}

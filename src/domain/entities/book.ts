@@ -4,27 +4,27 @@ export class Book {
     private _title: string,
     private _isAvailable: boolean = true,
     private _createdAt: Date = new Date(),
-    private _updatedAt: Date = new Date(),
+    private _updatedAt: Date = new Date()
   ) {}
 
   get id(): string {
-      return this._id;
+    return this._id;
   }
 
   get title(): string {
-      return this._title;
+    return this._title;
   }
 
   get isAvailable(): boolean {
-      return this._isAvailable;
+    return this._isAvailable;
   }
 
   get createdAt(): Date {
-      return this._createdAt;
+    return this._createdAt;
   }
 
   get updatedAt(): Date {
-      return this._updatedAt;
+    return this._updatedAt;
   }
 
   loan() {

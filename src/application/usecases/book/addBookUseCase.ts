@@ -5,7 +5,6 @@ import { AddBookResponseDto } from '../../dtos/book/addBookResponseDto';
 import { IdGeneratorInterface } from '../../../domain/utils/idGeneratorInterface';
 import { Book } from '../../../domain/entities/book';
 
-
 export class AddBookUseCase implements AddBookUseCaseInterface {
   constructor(
     private readonly bookRepository: BookRepositoryInterface,

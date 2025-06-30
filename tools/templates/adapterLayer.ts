@@ -61,12 +61,12 @@ export class ${repositoryClassName} implements ${repositoryInterfaceClassName} {
       entityName
     )} = await this.prisma.${lowercaseEntityName}.create({
       data: {
-        // Add propaties
+        // Add properties
       },
     });
 
     return new ${capitalEntityName}(
-      // Add propaties
+      // Add properties
     );
   }
 
@@ -78,7 +78,7 @@ export class ${repositoryClassName} implements ${repositoryInterfaceClassName} {
     if (!found${capitalEntityName}) return null;
 
     return new ${capitalEntityName}(
-      // Add propaties
+      // Add properties
     );
   }
 }

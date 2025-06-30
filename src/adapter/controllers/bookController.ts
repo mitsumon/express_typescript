@@ -1,8 +1,8 @@
-import { Request, Response } from "express";
-import { AddBookUseCaseInterface } from "../../application/usecases/book/addBookUseCaseInterface";
-import { AddBookRequestDto } from "../../application/dtos/book/addBookRequestDto";
-import { FindBookByIdUseCaseInterface } from "../../application/usecases/book/findBookByIdUseCaseInterface";
-import { FindBookByIdRequestDto } from "../../application/dtos/book/findBookByIdRequestDto";
+import { Request, Response } from 'express';
+import { AddBookUseCaseInterface } from '../../application/usecases/book/addBookUseCaseInterface';
+import { AddBookRequestDto } from '../../application/dtos/book/addBookRequestDto';
+import { FindBookByIdUseCaseInterface } from '../../application/usecases/book/findBookByIdUseCaseInterface';
+import { FindBookByIdRequestDto } from '../../application/dtos/book/findBookByIdRequestDto';
 
 export class BookController {
   constructor(
@@ -18,8 +18,8 @@ export class BookController {
       const book = await this.addBookUseCase.execute(requestDto);
       res.status(201).json(book);
     } catch (error) {
-      console.error("Error adding book:", error);
-      res.status(500).json({ error: "Internal Server Error" });
+      console.error('Error adding book:', error);
+      res.status(500).json({ error: 'Internal Server Error' });
     }
   }
 
@@ -32,11 +32,11 @@ export class BookController {
       if (book) {
         res.status(200).json(book);
       } else {
-        res.status(404).json({ error: "Book not found" });
+        res.status(404).json({ error: 'Book not found' });
       }
     } catch (error) {
-      console.error("Error findById:", error);
-      res.status(500).json({ error: "Internal Server Error" });
+      console.error('Error findById:', error);
+      res.status(500).json({ error: 'Internal Server Error' });
     }
   }
 }
